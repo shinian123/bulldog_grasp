@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<robot  name="yuntai" xmlns:xacro="http://ros.org/wiki/xacro">
+  <link name="cover_plate_link">
+    <inertial>
+      <origin xyz="-0.0003778 0.091975 0.11684" rpy="0 0 0" />
+      <mass
+        value="2.7829" />
+      <inertia
+        ixx="0.021999941366998"
+        ixy="9.60264281186101E-05"
+        ixz="3.31895280143294E-05"
+        iyy="0.05918710440776"
+        iyz="0.000587442986278965"
+        izz="0.0656829127261001" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/cover_plate.STL" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/cover_plate.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

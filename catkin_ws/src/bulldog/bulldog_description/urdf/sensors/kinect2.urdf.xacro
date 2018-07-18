@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<robot name="kinect2" xmlns:xacro="http://ros.org/wiki/xacro">
+  <link name="kinect2">
+    <inertial>
+      <origin xyz="-0.000734717390978814 -0.0336778506089655 0.00499740653890739" rpy="0 0 0" />
+      <mass value="0.807440673841848" />
+      <inertia
+        ixx="0.000561980088615652"
+        ixy="2.49103375389497E-06"
+        ixz="-1.4687538393705E-05"
+        iyy="0.00399199100910028"
+        iyz="-4.03531906298607E-06"
+        izz="0.00384236479254555" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/kinect2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.101960784313725 0.101960784313725 0.101960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/kinect2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="kinect2_rgb_optical_frame" />
+  <joint name="rgb_joint" type="fixed">
+  <origin xyz="0 -0.04079 0.03178" rpy="0 0 0" />
+  <parent link="kinect2" />
+  <child link="kinect2_rgb_optical_frame"/> 
+  </joint>
+
+  <link name="kinect2_ir_optical_frame" />
+  <joint name="ir_joint" type="fixed">
+  <origin xyz="0.095 -0.04079 0.03178" rpy="0 0 0" />
+  <parent link="kinect2" />
+  <child link="kinect2_ir_optical_frame"/> 
+  </joint>
+
+</robot>

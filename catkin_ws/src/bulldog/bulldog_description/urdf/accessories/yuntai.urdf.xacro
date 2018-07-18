@@ -1,0 +1,209 @@
+<?xml version="1.0" ?>
+<robot  name="yuntai" xmlns:xacro="http://ros.org/wiki/xacro">
+  <link name="plate_link">
+    <inertial>
+      <origin xyz="-2.24592311040574E-17 -0.0141762635511438 0.000273176447447133" rpy="0 0 0" />
+      <mass value="0.120955688774525" />
+      <inertia
+        ixx="0.000258527715151011"
+        ixy="-7.38767452535662E-20"
+        ixz="4.48831763968397E-20"
+        iyy="0.00045283491467706"
+        iyz="-3.94070526460506E-07"
+        izz="0.000258536741514214" />
+    </inertial>
+    <visual>
+      <origin  xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/plate_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/plate_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="servo1_link">
+    <inertial>
+      <origin xyz="1.01055349547203E-06 -0.0115134503385961 -3.23566095202441E-05" rpy="0 0 0" />
+      <mass value="0.0432653395302604" />
+      <inertia
+        ixx="1.21934605377184E-05"
+        ixy="-7.09153810720321E-10"
+        ixz="-5.39912755439103E-10"
+        iyy="7.4884566382129E-06"
+        iyz="-1.82417926778418E-07"
+        izz="1.03328178785861E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/servo1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/servo1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="servo1_joint" type="fixed">
+    <origin xyz="0 -0.05675 -0.0133" rpy="-1.5708 1.2246E-16 -3.1416" />
+    <parent link="plate_link" />
+    <child link="servo1_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="disk1_link">
+    <inertial>
+      <origin xyz="4.05487193606184E-08 0.00225749355928646 -6.63464601990266E-08" rpy="0 0 0" />
+      <mass value="0.000787028624060867" />
+      <inertia
+        ixx="2.31518284348894E-08"
+        ixy="5.34094331205932E-14"
+        ixz="1.07416097004525E-13"
+        iyy="4.4522029534641E-08"
+        iyz="1.33780673168824E-13"
+        izz="2.31513791752799E-08" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/disk1_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/disk1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="yuntai_shoulder_elbow_joint" type="revolute">
+    <origin xyz="0 0 0.017745" rpy="1.5708 -2.5995E-18 -1.1652" />
+    <parent link="servo1_link" />
+    <child link="disk1_link" />
+    <axis xyz="0 1 0" />
+    <limit lower="-1.57" upper="1.57"  effort="150"  velocity="3.15" />
+  </joint>
+
+  <link name="servo2_link">
+    <inertial>
+      <origin xyz="-1.62147985772049E-05 0.0293800171852581 3.12984866827497E-05" rpy="0 0 0" />
+      <mass value="0.0447244943070203" />
+      <inertia
+        ixx="1.35314149244498E-05"
+        ixy="-1.54714074371834E-08"
+        ixz="-5.61360254757384E-10"
+        iyy="7.78530951080833E-06"
+        iyz="1.81132989598867E-07"
+        izz="1.1533019653806E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/servo2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/servo2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="servo2_joint" type="fixed">
+    <origin xyz="0 0.0029956 0" rpy="3.1416 0.216 3.1416" />
+    <parent link="disk1_link" />
+    <child link="servo2_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <link name="disk2_link">
+    <inertial>
+      <origin xyz="4.0548720561806E-08 0.00225749355928648 -6.63464601313724E-08" rpy="0 0 0" />
+      <mass value="0.000787028624060868" />
+      <inertia
+        ixx="2.31518284348894E-08"
+        ixy="5.34094331196308E-14"
+        ixz="1.07416097004525E-13"
+        iyy="4.4522029534641E-08"
+        iyz="1.33780673173258E-13"
+        izz="2.31513791752799E-08" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/disk2_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/disk2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="kinect2_joint" type="revolute">
+    <origin xyz="0 0.041809 -0.017745" rpy="-1.5708 0 -2.7298" />
+    <parent link="servo2_link" />
+    <child link="disk2_link" />
+    <axis xyz="0 1 0" />
+  <limit lower="-3.14" upper="3.14"  effort="150"  velocity="3.15" />
+  </joint>
+  <link name="top_link">
+    <inertial>
+      <origin  xyz="-0.00291764759358233 0.0181622781866235 1.73472347597681E-17" rpy="0 0 0" />
+      <mass value="0.0038991020769589" />
+      <inertia
+        ixx="7.9783070435998E-07"
+        ixy="-2.06417165491647E-07"
+        ixz="2.7313503826501E-21"
+        iyy="1.41429843708263E-06"
+        iyz="1.35657620458697E-21"
+        izz="1.73947469245394E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/top_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://bulldog_description/meshes/top_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="kinect_joint" type="fixed">
+    <origin xyz="-0.00058 -0.017495 0" rpy="3.1415 0 -1.6108" />
+    <parent link="disk2_link" />
+    <child link="top_link" />
+    <axis xyz="1 0 0" />
+  </joint>
+</robot>

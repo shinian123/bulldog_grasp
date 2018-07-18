@@ -1,0 +1,4 @@
+18:10:36 **** Clean-only build of configuration Default for project build ****
+make clean 
+18:10:39 **** Build of configuration Default for project build ****
+make all 
